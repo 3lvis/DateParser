@@ -14,6 +14,12 @@ let isoDate = NSDate(fromDateString:"2015-06-23T14:40:08.000+02:00")
 
 // Unix Timestamp
 let timestampDate = NSDate(fromDateString:"1441843200")
+
+let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType()
+// Returns DateType.ISO8601  
+
+let timestampDateType = "1441843200000000".dateType()
+// Returns DateType.UnixTimestamp
 ```
 
 ## Installation
