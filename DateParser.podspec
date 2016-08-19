@@ -1,6 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = "DateParser"
   s.summary          = "Fastest and simplest date parser in the existence of Objective-C & Swift"
+  s.description  = <<-EOS
+  Fastest and simplest date parser in the existence of Objective-C & Swift. Out of the box support for parsing ISO 8601 and Unix timestamps.
+  EOS
   s.version          = "0.1.0"
   s.homepage         = "https://github.com/3lvis/DateParser"
   s.license          = 'MIT'
