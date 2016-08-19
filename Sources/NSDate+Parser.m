@@ -1,17 +1,17 @@
-#import "NSDate+HYPPropertyMapper.h"
+#import "NSDate+Parser.h"
 
-@implementation NSDate (HYPPropertyMapperDateHandling)
+@implementation NSDate (Parser)
 
-+ (NSDate *)hyp_dateFromDateString:(NSString *)dateString {
++ (NSDate *)dateFromDateString:(NSString *)dateString {
     NSDate *parsedDate = nil;
 
-    HYPDateType dateType = [dateString hyp_dateType];
+    DateType dateType = [dateString dateType];
     switch (dateType) {
-        case HYPDateTypeISO8601: {
-            parsedDate = [self hyp_dateFromISO8601String:dateString];
+        case ISO8601: {
+            parsedDate = [self dateFromISO8601String:dateString];
         } break;
-        case HYPDateTypeUnixTimestamp: {
-            parsedDate = [self hyp_dateFromUnixTimestampString:dateString];
+        case UnixTimestamp: {
+            parsedDate = [self dateFromUnixTimestampString:dateString];
         } break;
         default: break;
     }
@@ -19,7 +19,7 @@
     return parsedDate;
 }
 
-+ (NSDate *)hyp_dateFromISO8601String:(NSString *)dateString {
++ (NSDate *)dateFromISO8601String:(NSString *)dateString {
     if (!dateString || [dateString isEqual:[NSNull null]]) {
         return nil;
     }
@@ -202,11 +202,11 @@
     return nil;
 }
 
-+ (NSDate *)hyp_dateFromUnixTimestampNumber:(NSNumber *)unixTimestamp {
-    return [self hyp_dateFromUnixTimestampString:[unixTimestamp stringValue]];
++ (NSDate *)dateFromUnixTimestampNumber:(NSNumber *)unixTimestamp {
+    return [self dateFromUnixTimestampString:[unixTimestamp stringValue]];
 }
 
-+ (NSDate *)hyp_dateFromUnixTimestampString:(NSString *)unixTimestamp {
++ (NSDate *)dateFromUnixTimestampString:(NSString *)unixTimestamp {
     NSString *parsedString = unixTimestamp;
 
     NSString *validUnixTimestamp = @"1441843200";
@@ -225,13 +225,13 @@
 
 @end
 
-@implementation NSString (HYPPropertyMapperDateHandling)
+@implementation NSString (Parser)
 
-- (HYPDateType)hyp_dateType {
+- (DateType)dateType {
     if ([self containsString:@"-"]) {
-        return HYPDateTypeISO8601;
+        return ISO8601;
     } else {
-        return HYPDateTypeUnixTimestamp;
+        return UnixTimestamp;
     }
 }
 

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14C47E0E1CD2AE5F004A48DF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14C47E0D1CD2AE5F004A48DF /* Info.plist */; };
-		14FF6B511D673F8600DC384F /* NSDate+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF6B501D673F8600DC384F /* NSDate+HYPPropertyMapper.m */; };
+		14FF6B511D673F8600DC384F /* NSDate+Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF6B501D673F8600DC384F /* NSDate+Parser.m */; };
 		14FF6B531D673FA200DC384F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF6B521D673FA200DC384F /* Tests.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,8 +37,8 @@
 		14F393961CC6517E00616696 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		14FF6B4D1D673F8600DC384F /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		14FF6B4E1D673F8600DC384F /* DateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateParser.h; sourceTree = "<group>"; };
-		14FF6B4F1D673F8600DC384F /* NSDate+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HYPPropertyMapper.h"; sourceTree = "<group>"; };
-		14FF6B501D673F8600DC384F /* NSDate+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HYPPropertyMapper.m"; sourceTree = "<group>"; };
+		14FF6B4F1D673F8600DC384F /* NSDate+Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Parser.h"; sourceTree = "<group>"; };
+		14FF6B501D673F8600DC384F /* NSDate+Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Parser.m"; sourceTree = "<group>"; };
 		14FF6B521D673FA200DC384F /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,8 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				14FF6B4E1D673F8600DC384F /* DateParser.h */,
-				14FF6B4F1D673F8600DC384F /* NSDate+HYPPropertyMapper.h */,
-				14FF6B501D673F8600DC384F /* NSDate+HYPPropertyMapper.m */,
+				14FF6B4F1D673F8600DC384F /* NSDate+Parser.h */,
+				14FF6B501D673F8600DC384F /* NSDate+Parser.m */,
 				14FF6B4D1D673F8600DC384F /* Tests-Bridging-Header.h */,
 			);
 			path = Sources;
@@ -195,7 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14FF6B511D673F8600DC384F /* NSDate+HYPPropertyMapper.m in Sources */,
+				14FF6B511D673F8600DC384F /* NSDate+Parser.m in Sources */,
 				14FF6B531D673FA200DC384F /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
