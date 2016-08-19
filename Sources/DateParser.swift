@@ -78,52 +78,63 @@ public extension NSDate {
                 else if let string = String.fromCString(&originalString[22]) {
                     if originalLength == 25 && string == ":" {
                         currentString.withCString { cstr in
-                            strncpy(UnsafeMutablePointer(cstr), originalString, 19);
+                            strncpy(UnsafeMutablePointer(cstr), originalString, 19)
                             hasTimezone = true
                         }
                     }
                 }
 
-
-                    // Copy all the date excluding the miliseconds and the Z.
-                    // Current date: 2014-03-30T09:13:00.000Z
-                    // Will become:  2014-03-30T09:13:00
-                    // Unit test G
+                // Copy all the date excluding the miliseconds and the Z.
+                // Current date: 2014-03-30T09:13:00.000Z
+                // Will become:  2014-03-30T09:13:00
+                // Unit test G
                 else if let string = String.fromCString(&originalString[originalLength - 1]) {
                     if originalLength == 24 && string == "Z" {
                         currentString.withCString { cstr in
-                            strncpy(UnsafeMutablePointer(cstr), originalString, 19);
+                            strncpy(UnsafeMutablePointer(cstr), originalString, 19)
                             hasMiliseconds = true
                         }
                     }
                 }
 
-                    // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to YES.
-                    // Current date: 2015-06-23T12:40:08.000+02:00
-                    // Will become:  2015-06-23T12:40:08
-                    // Unit test A
-                else if originalLength == 29 && originalString[26] == ':' {
-                    strncpy(currentString, originalString, 19);
-                    hasTimezone = YES;
-                    hasMiliseconds = YES;
+                // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to YES.
+                // Current date: 2015-06-23T12:40:08.000+02:00
+                // Will become:  2015-06-23T12:40:08
+                // Unit test A
+                else if let string = String.fromCString(&originalString[26]) {
+                    if originalLength == 29 && string == ":" {
+                        currentString.withCString { cstr in
+                            strncpy(UnsafeMutablePointer(cstr), originalString, 19)
+                            hasTimezone = true
+                            hasMiliseconds = true
+                        }
+                    }
                 }
 
-                    // Copy all the date excluding the microseconds and the timezone also set `hasTimezone` to YES.
-                    // Current date: 2015-08-23T09:29:30.007450+00:00
-                    // Will become:  2015-08-23T09:29:30
-                    // Unit test D
-                else if originalLength == 32 && originalString[29] == ':' {
-                    strncpy(currentString, originalString, 19);
-                    hasTimezone = YES;
-                    hasMicroseconds = YES;
+                // Copy all the date excluding the microseconds and the timezone also set `hasTimezone` to YES.
+                // Current date: 2015-08-23T09:29:30.007450+00:00
+                // Will become:  2015-08-23T09:29:30
+                // Unit test D
+                else if let string = String.fromCString(&originalString[29]) {
+                    if originalLength == 32 && string == ":" {
+                        currentString.withCString { cstr in
+                            strncpy(UnsafeMutablePointer(cstr), originalString, 19)
+                            hasTimezone = true
+                            hasMicroseconds = true
+                        }
+                    }
                 }
 
                     // Copy all the date excluding the microseconds and the timezone.
                     // Current date: 2015-09-10T13:47:21.116+0000
                     // Will become:  2015-09-10T13:47:21
                     // Unit test E
-                else if originalLength == 28 && originalString[23] == '+' {
-                    strncpy(currentString, originalString, 19);
+                else if let string = String.fromCString(&originalString[23]) {
+                    if originalLength == 28 && string == "+" {
+                        currentString.withCString { cstr in
+                            strncpy(UnsafeMutablePointer(cstr), originalString, 19)
+                        }
+                    }
                 }
 
                     // Copy all the date excluding the microseconds and the Z.
