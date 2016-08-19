@@ -1,4 +1,4 @@
-# DateParser
+![logo](https://raw.githubusercontent.com/3lvis/DateParser/master/Resources/logo-v1.png)
 
 [![Version](https://img.shields.io/cocoapods/v/DateParser.svg?style=flat)](https://cocoapods.org/pods/DateParser)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/3lvis/DateParser)
