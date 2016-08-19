@@ -9,7 +9,11 @@
 ## Usage
 
 ```swift
-<API>
+// ISO 8601
+let isoDate = NSDate(fromDateString:"2015-06-23T14:40:08.000+02:00")
+
+// Unix Timestamp
+let timestampDate = NSDate(fromDateString:"1441843200")
 ```
 
 ## Installation
