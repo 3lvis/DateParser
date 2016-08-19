@@ -1,0 +1,37 @@
+# DateParser
+
+[![Version](https://img.shields.io/cocoapods/v/DateParser.svg?style=flat)](https://cocoapods.org/pods/DateParser)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/3lvis/DateParser)
+![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20OS%20X%20%7C%20watchOS%20%7C%20tvOS%20-lightgrey.svg)
+[![License](https://img.shields.io/cocoapods/l/DateParser.svg?style=flat)](https://cocoapods.org/pods/DATAStack)
+
+
+## Usage
+
+```swift
+<API>
+```
+
+## Installation
+
+**DateParser** is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'DateParser'
+```
+
+**DateParser** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
+it, simply add the following line to your Cartfile:
+
+```ruby
+github "3lvis/DateParser"
+```
+
+## License
+
+**DateParser** is available under the MIT license. See the LICENSE file for more info.
+
+## Author
+
+Elvis Nuñez, [@3lvis](https://twitter.com/3lvis)
