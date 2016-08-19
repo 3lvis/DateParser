@@ -7,10 +7,10 @@
 
     DateType dateType = [dateString dateType];
     switch (dateType) {
-        case ISO8601: {
+        case iso8601: {
             parsedDate = [self dateFromISO8601String:dateString];
         } break;
-        case UnixTimestamp: {
+        case unixTimestamp: {
             parsedDate = [self dateFromUnixTimestampString:dateString];
         } break;
         default: break;
@@ -229,9 +229,9 @@
 
 - (DateType)dateType {
     if ([self containsString:@"-"]) {
-        return ISO8601;
+        return iso8601;
     } else {
-        return UnixTimestamp;
+        return unixTimestamp;
     }
 }
 

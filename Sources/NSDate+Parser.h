@@ -4,8 +4,8 @@ static NSString * const HYPPropertyMapperDateNoTimestampFormat = @"YYYY-MM-DD";
 static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
 
 typedef NS_ENUM(NSInteger, DateType) {
-    ISO8601,
-    UnixTimestamp
+    iso8601,
+    unixTimestamp
 };
 
 @interface NSDate (Parser)
