@@ -71,22 +71,31 @@ public extension NSDate {
                     }
                 }
 
-                    // Copy all the date excluding the timezone also set `hasTimezone` to YES.
-                    // Current date: 2014-01-01T00:00:00+00:00
-                    // Will become:  2014-01-01T00:00:00
-                    // Unit test B and C
-                else if originalLength == 25 && originalString[22] == ':' {
-                    strncpy(currentString, originalString, 19);
-                    hasTimezone = YES;
+                // Copy all the date excluding the timezone also set `hasTimezone` to YES.
+                // Current date: 2014-01-01T00:00:00+00:00
+                // Will become:  2014-01-01T00:00:00
+                // Unit test B and C
+                else if let string = String.fromCString(&originalString[22]) {
+                    if originalLength == 25 && string == ":" {
+                        currentString.withCString { cstr in
+                            strncpy(UnsafeMutablePointer(cstr), originalString, 19);
+                            hasTimezone = true
+                        }
+                    }
                 }
+
 
                     // Copy all the date excluding the miliseconds and the Z.
                     // Current date: 2014-03-30T09:13:00.000Z
                     // Will become:  2014-03-30T09:13:00
                     // Unit test G
-                else if originalLength == 24 && originalString[originalLength - 1] == 'Z' {
-                    strncpy(currentString, originalString, 19);
-                    hasMiliseconds = YES;
+                else if let string = String.fromCString(&originalString[originalLength - 1]) {
+                    if originalLength == 24 && string == "Z" {
+                        currentString.withCString { cstr in
+                            strncpy(UnsafeMutablePointer(cstr), originalString, 19);
+                            hasMiliseconds = true
+                        }
+                    }
                 }
 
                     // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to YES.
