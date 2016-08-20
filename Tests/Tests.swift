@@ -6,7 +6,7 @@ class DateTests: XCTestCase {
         let resultDate = NSDate(dateString: "2015-06-23T14:40:08.000+02:00")
 
         XCTAssertNotNil(resultDate)
-        XCTAssertEqual(date.timeIntervalSince1970, resultDate.timeIntervalSince1970)
+        XCTAssertEqual(date.timeIntervalSince1970, resultDate!.timeIntervalSince1970)
     }
 
     func testDateB() {
