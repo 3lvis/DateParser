@@ -62,6 +62,10 @@ public extension Date {
 
             switch originalLength {
             case 19:
+                // Copy all the date
+                // Current date: 2014-03-30T09:13:00
+                // Will become:  2014-03-30T09:13:00
+                // Unit test K
                 currentString = originalString
             case 20:
                 // Copy all the date excluding the Z.
