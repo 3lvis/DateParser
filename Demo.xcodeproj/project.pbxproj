@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14B2D8631D67A6990005BFAB /* DateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B2D8621D67A6990005BFAB /* DateParser.swift */; };
+		14B8D3341D6A1B4F00D26312 /* ObjCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B8D3331D6A1B4F00D26312 /* ObjCTests.m */; };
 		14C47E0E1CD2AE5F004A48DF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14C47E0D1CD2AE5F004A48DF /* Info.plist */; };
 		14FF6B531D673FA200DC384F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FF6B521D673FA200DC384F /* Tests.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,8 @@
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14B2D8621D67A6990005BFAB /* DateParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateParser.swift; sourceTree = "<group>"; };
+		14B8D3321D6A1B4F00D26312 /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
+		14B8D3331D6A1B4F00D26312 /* ObjCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCTests.m; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -83,6 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				14FF6B521D673FA200DC384F /* Tests.swift */,
+				14B8D3331D6A1B4F00D26312 /* ObjCTests.m */,
+				14B8D3321D6A1B4F00D26312 /* Tests-Bridging-Header.h */,
 				146D72B01AB782920058798C /* Supporting Files */,
 			);
 			path = Tests;
@@ -194,6 +199,7 @@
 			files = (
 				14B2D8631D67A6990005BFAB /* DateParser.swift in Sources */,
 				14FF6B531D673FA200DC384F /* Tests.swift in Sources */,
+				14B8D3341D6A1B4F00D26312 /* ObjCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +303,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Tests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -311,6 +318,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Tests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

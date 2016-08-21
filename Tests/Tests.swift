@@ -25,8 +25,6 @@ class DateTests: XCTestCase {
     func testDateD() {
         let date = Date.dateWithHourAndTimeZoneString("2015-06-23T19:04:19.911Z")
         let resultDate = Date(dateString: "2015-06-23T19:04:19.911Z")
-        date.prettyPrint()
-
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
