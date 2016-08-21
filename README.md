@@ -23,6 +23,21 @@ let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType()
 let timestampDateType = "1441843200000000".dateType()
 ```
 
+## Supported Formats
+
+```
+2014-01-02
+2016-01-09T00:00:00
+2014-03-30T09:13:00Z
+2016-01-09T00:00:00.00
+2015-06-23T19:04:19.911Z
+2014-01-01T00:00:00+00:00
+2015-09-10T00:00:00.184968Z
+2015-09-10T00:00:00.116+0000
+2015-06-23T14:40:08.000+02:00
+2014-01-02T00:00:00.000000+00:00
+```
+
 ## Installation
 
 **DateParser** is available through [CocoaPods](http://cocoapods.org). To install
