@@ -59,44 +59,51 @@ public extension Date {
             // If your date format is not supported, then you'll get "Signal Sigabrt". Just ask your format to be included.
             // ----
 
-            /*
-             let utf8 = [originalString[originalLength - 1]]
-             utf8.withUnsafeBufferPointer { ptr in
-             }
-             */
-
             switch originalLength {
-                /*case 20:
-                 // Copy all the date excluding the Z.
-                 // Current date: 2014-03-30T09:13:00Z
-                 // Will become:  2014-03-30T09:13:00
-                 // Unit test H
-                 let utf8 = [originalString[originalLength - 1], 0]
-                 utf8.withUnsafeBufferPointer { pointer in
-                 if String(validatingUTF8: pointer.baseAddress!) == "Z" {
-                 strncpy(UnsafeMutablePointer(mutating: currentString), originalString, originalLength - 1)
-                 }
-                 }
-                 case 25:
-                 // Copy all the date excluding the timezone also set `hasTimezone` to YES.
-                 // Current date: 2014-01-01T00:00:00+00:00
-                 // Will become:  2014-01-01T00:00:00
-                 // Unit test B and C
-                 let utf8 = [originalString[22], 0]
-                 utf8.withUnsafeBufferPointer { pointer in
-                 if String(validatingUTF8: pointer.baseAddress!) == ":" {
-                 strncpy(UnsafeMutablePointer(mutating: currentString), originalString, 19)
-                 hasTimezone = true
-                 }
-                 }*/
+            case 20:
+                // Copy all the date excluding the Z.
+                // Current date: 2014-03-30T09:13:00Z
+                // Will become:  2014-03-30T09:13:00
+                // Unit test H
+                let timeZoneIndicatorIndex = originalString.index(originalString.endIndex, offsetBy: -1)
+                if originalString[timeZoneIndicatorIndex] == "Z" {
+                    currentString = originalString.substring(to: timeZoneIndicatorIndex)
+                }
+            case 24:
+                // Copy all the date excluding the miliseconds and the Z.
+                // Current date: 2014-03-30T09:13:00.000Z
+                // Will become:  2014-03-30T09:13:00
+                // Unit test G
+                let timeZoneIndicatorIndex = originalString.index(originalString.endIndex, offsetBy: -1)
+                if originalString[timeZoneIndicatorIndex] == "Z" {
+                    currentString = originalString.substring(to: timeZoneIndicatorIndex)
+                    hasMiliseconds = true
+                }
+            case 25:
+                // Copy all the date excluding the timezone also set `hasTimezone` to true.
+                // Current date: 2014-01-01T00:00:00+00:00
+                // Will become:  2014-01-01T00:00:00
+                // Unit test B and C
+                print(originalString)
+
+                let evaluatedDate = "2014-01-01T00:00:00+00"
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
+                if originalString[timeZoneColonIndex] == ":" {
+                    let targetDate = "2014-01-01T00:00:00"
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
+                    currentString = originalString.substring(to: baseDateIndex)
+                    hasTimezone = true
+                }
             case 29:
                 // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to YES.
                 // Current date: 2015-06-23T12:40:08.000+02:00
                 // Will become:  2015-06-23T12:40:08
                 // Unit test A
-                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: "2015-06-23T12:40:08.000+02".characters.count)
+                let evaluatedDate = "2015-06-23T12:40:08.000+02"
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
                 if originalString[timeZoneColonIndex] == ":" {
-                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: "2015-06-23T12:40:08".characters.count)
+                    let targetDate = "2015-06-23T12:40:08"
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
                     currentString = originalString.substring(to: baseDateIndex)
                     hasTimezone = true
                     hasMiliseconds = true
@@ -106,15 +113,6 @@ public extension Date {
             }
 
             /*
-             // Copy all the date excluding the miliseconds and the Z.
-             // Current date: 2014-03-30T09:13:00.000Z
-             // Will become:  2014-03-30T09:13:00
-             // Unit test G
-             else if let string = String(validatingUTF8: &originalString[originalLength - 1]), originalLength == 24 && string == "Z" {
-             strncpy(UnsafeMutablePointer(mutating: currentString), originalString, 19)
-             hasMiliseconds = true
-             }
-
              else if let string = String(validatingUTF8: &originalString[26]), originalLength == 29 && string == ":" {
              strncpy(UnsafeMutablePointer(mutating: currentString), originalString, 19)
              hasTimezone = true
