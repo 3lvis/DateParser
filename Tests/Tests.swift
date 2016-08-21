@@ -35,7 +35,7 @@ class DateTests: XCTestCase {
 
     func testDateE() {
         let date = Date.dateWithDayString("2015-09-10")
-        let resultDate = Date(dateString: "2015-09-10T00:00:00.116+0000")
+        let resultDate = Date(dateString: "2015-09-10T00:00:00.000+0000")
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -43,7 +43,7 @@ class DateTests: XCTestCase {
 
     func testDateF() {
         let date = Date.dateWithDayString("2015-09-10")
-        let resultDate = Date(dateString: "2015-09-10T00:00:00.184968Z")
+        let resultDate = Date(dateString: "2015-09-10T00:00:00.000000Z")
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
