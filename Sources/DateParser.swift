@@ -247,37 +247,27 @@ public extension Date {
         }
     }
 
-    public init(unixTimestampString: String) {
-        self.init()
-    }
-
     public init(unixTimestampNumber: NSNumber) {
-        self.init()
-    }
-}
-
-/*
-+ (NSDate *)dateFromUnixTimestampNumber:(NSNumber *)unixTimestamp {
-    return [self dateFromUnixTimestampString:[unixTimestamp stringValue]];
+        self.init(unixTimestampString: unixTimestampNumber.stringValue)
     }
 
-    + (NSDate *)dateFromUnixTimestampString:(NSString *)unixTimestamp {
-        NSString *parsedString = unixTimestamp;
-
-        NSString *validUnixTimestamp = @"1441843200";
-        NSInteger validLength = [validUnixTimestamp length];
-        if ([unixTimestamp length] > validLength) {
-            parsedString = [unixTimestamp substringToIndex:validLength];
+    public init(unixTimestampString: String) {
+        var parsedString = unixTimestampString
+        let validUnixTimestamp = "1441843200"
+        let validLength = validUnixTimestamp.characters.count
+        if unixTimestampString.characters.count > validLength {
+            parsedString = unixTimestampString.substring(to: validUnixTimestamp.endIndex)
         }
 
-        NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
-        numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-        NSNumber *unixTimestampNumber = [numberFormatter numberFromString:parsedString];
-        NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:unixTimestampNumber.doubleValue];
-        
-        return date;
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        if let unixTimestampNumber = numberFormatter.number(from: parsedString) {
+            self.init(timeIntervalSince1970: unixTimestampNumber.doubleValue)
+        } else {
+            fatalError("Invalid unix timestamp \(unixTimestampString), please file an issue to get support for your date type")
+        }
+    }
 }
-*/
 
 public extension String {
     public func dateType() -> DateType {
