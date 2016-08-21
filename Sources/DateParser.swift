@@ -167,7 +167,7 @@ public extension Date {
                     hasMicroseconds = true
                 }
             default:
-                fatalError("Your date format is not supported, please file a bug report asking it to be added.")
+                fatalError("Your date format \(originalString) is not supported, please file a bug report asking it to be added.")
                 break
             }
 
@@ -195,9 +195,7 @@ public extension Date {
 
                     return originalString.substring(from: endIndex)
                 }
-                print(timeZone)
                 currentString = currentString.appending(timeZone)
-                print(currentString)
             } else {
                 // Add GMT timezone to the end of the string
                 // Current date: 2015-09-10T00:00:00
@@ -258,8 +256,35 @@ public extension Date {
     }
 }
 
+/*
++ (NSDate *)dateFromUnixTimestampNumber:(NSNumber *)unixTimestamp {
+    return [self dateFromUnixTimestampString:[unixTimestamp stringValue]];
+    }
+
+    + (NSDate *)dateFromUnixTimestampString:(NSString *)unixTimestamp {
+        NSString *parsedString = unixTimestamp;
+
+        NSString *validUnixTimestamp = @"1441843200";
+        NSInteger validLength = [validUnixTimestamp length];
+        if ([unixTimestamp length] > validLength) {
+            parsedString = [unixTimestamp substringToIndex:validLength];
+        }
+
+        NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+        numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+        NSNumber *unixTimestampNumber = [numberFormatter numberFromString:parsedString];
+        NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:unixTimestampNumber.doubleValue];
+        
+        return date;
+}
+*/
+
 public extension String {
     public func dateType() -> DateType {
-        return .iso8601
+        if self.contains("-") {
+            return .iso8601
+        } else {
+            return .unixTimestamp
+        }
     }
 }
