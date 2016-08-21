@@ -61,6 +61,8 @@ public extension Date {
             // ----
 
             switch originalLength {
+            case 19:
+                currentString = originalString
             case 20:
                 // Copy all the date excluding the Z.
                 // Current date: 2014-03-30T09:13:00Z
@@ -69,6 +71,19 @@ public extension Date {
                 let timeZoneIndicatorIndex = originalString.index(originalString.endIndex, offsetBy: -1)
                 if originalString[timeZoneIndicatorIndex] == "Z" {
                     currentString = originalString.substring(to: timeZoneIndicatorIndex)
+                }
+            case 22:
+                // Copy all the date excluding the miliseconds.
+                // Current date: 2016-01-09T00:00:00.00
+                // Will become:  2016-01-09T00:00:00
+                // Unit test J
+                let evaluatedDate = "2016-01-09T00:00:00"
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
+                if originalString[timeZoneColonIndex] == "." {
+                    let targetDate = "2014-01-01T00:00:00"
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
+                    currentString = originalString.substring(to: baseDateIndex)
+                    hasCentiseconds = true
                 }
             case 24:
                 // Copy all the date excluding the miliseconds and the Z.
@@ -152,29 +167,9 @@ public extension Date {
                     hasMicroseconds = true
                 }
             default:
+                fatalError("Your date format is not supported, please file a bug report asking it to be added.")
                 break
             }
-
-            /*
-             else if let string = String(validatingUTF8: &originalString[26]), originalLength == 29 && string == ":" {
-             strncpy(UnsafeMutablePointer(mutating: currentString), originalString, 19)
-             hasTimezone = true
-             hasMiliseconds = true
-             }
-
-             // Copy all the date excluding the miliseconds.
-             // Current date: 2016-01-09T00:00:00.00
-             // Will become:  2016-01-09T00:00:00
-             // Unit test J
-             else if let string = String(validatingUTF8: &originalString[19]), originalLength == 22 && string == "." {
-             strncpy(UnsafeMutablePointer(mutating: currentString), originalString, 19)
-             hasCentiseconds = true
-             }
-
-             // Poorly formatted timezone
-             else {
-             strncpy(UnsafeMutablePointer(mutating: currentString), originalString, originalLength > 24 ? 24 : originalLength)
-             }*/
 
             // Timezone
             let currentLength = currentString.characters.count
