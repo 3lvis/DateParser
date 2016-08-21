@@ -2,54 +2,27 @@ import XCTest
 
 class DateTests: XCTestCase {
     func testDateA() {
-        let date = Date.dateWithHourAndTimeZoneString("2015-06-23T12:40:08.000")
-        let resultDate = Date(dateString: "2015-06-23T14:40:08.000+02:00")
-
+        let date = Date.dateWithDayString("2016-01-09")
+        let resultDate = Date(dateString: "2016-01-09T00:00:00")
         XCTAssertNotNil(resultDate)
-        XCTAssertEqual(date.timeIntervalSince1970, resultDate!.timeIntervalSince1970)
+        XCTAssertEqual(date, resultDate)
     }
 
     func testDateB() {
-        let date = Date.dateWithDayString("2014-01-01")
-        let resultDate = Date(dateString: "2014-01-01T00:00:00+00:00")
-
+        let date = Date.dateWithHourAndTimeZoneString("2014-03-30T09:13:00.000Z")
+        let resultDate = Date(dateString: "2014-03-30T09:13:00Z")
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
 
     func testDateC() {
-        let date = Date.dateWithDayString("2014-01-02")
-        let resultDate = Date(dateString: "2014-01-02")
-
+        let date = Date.dateWithDayString("2016-01-09")
+        let resultDate = Date(dateString: "2016-01-09T00:00:00.00")
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
 
     func testDateD() {
-        let date = Date.dateWithDayString("2014-01-02")
-        let resultDate = Date(dateString: "2014-01-02T00:00:00.000000+00:00")
-
-        XCTAssertNotNil(resultDate)
-        XCTAssertEqual(date, resultDate)
-    }
-
-    func testDateE() {
-        let date = Date.dateWithDayString("2015-09-10")
-        let resultDate = Date(dateString: "2015-09-10T00:00:00.000+0000")
-
-        XCTAssertNotNil(resultDate)
-        XCTAssertEqual(date, resultDate)
-    }
-
-    func testDateF() {
-        let date = Date.dateWithDayString("2015-09-10")
-        let resultDate = Date(dateString: "2015-09-10T00:00:00.000000Z")
-
-        XCTAssertNotNil(resultDate)
-        XCTAssertEqual(date, resultDate)
-    }
-
-    func testDateG() {
         let date = Date.dateWithHourAndTimeZoneString("2015-06-23T19:04:19.911Z")
         let resultDate = Date(dateString: "2015-06-23T19:04:19.911Z")
         date.prettyPrint()
@@ -58,31 +31,62 @@ class DateTests: XCTestCase {
         XCTAssertEqual(date, resultDate)
     }
 
+    func testDateE() {
+        let date = Date.dateWithDayString("2014-01-01")
+        let resultDate = Date(dateString: "2014-01-01T00:00:00+00:00")
+
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date, resultDate)
+    }
+
+    func testDateF() {
+        let date = Date.dateWithDayString("2014-01-02")
+        let resultDate = Date(dateString: "2014-01-02")
+
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date, resultDate)
+    }
+
+    func testDateG() {
+        let date = Date.dateWithDayString("2015-09-10")
+        let resultDate = Date(dateString: "2015-09-10T00:00:00.000000Z")
+
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date, resultDate)
+    }
+    
     func testDateH() {
-        let date = Date.dateWithHourAndTimeZoneString("2014-03-30T09:13:00.000Z")
-        let resultDate = Date(dateString: "2014-03-30T09:13:00Z")
+        let date = Date.dateWithDayString("2015-09-10")
+        let resultDate = Date(dateString: "2015-09-10T00:00:00.000+0000")
+
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
 
     func testDateI() {
-        let resultDate = Date(dateString: "2014-01-02T00:monsterofthelakeI'mhere00:00.007450+00:00")
-        XCTAssertNil(resultDate)        
+        let date = Date.dateWithHourAndTimeZoneString("2015-06-23T12:40:08.000")
+        let resultDate = Date(dateString: "2015-06-23T14:40:08.000+02:00")
+
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date.timeIntervalSince1970, resultDate!.timeIntervalSince1970)
     }
 
     func testDateJ() {
-        let date = Date.dateWithDayString("2016-01-09")
-        let resultDate = Date(dateString: "2016-01-09T00:00:00.00")
+        let date = Date.dateWithDayString("2014-01-02")
+        let resultDate = Date(dateString: "2014-01-02T00:00:00.000000+00:00")
+
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
 
+    /*
+    // No longer testable since now it will use fatalError instead of returning nil
     func testDateK() {
-        let date = Date.dateWithDayString("2016-01-09")
-        let resultDate = Date(dateString: "2016-01-09T00:00:00")
-        XCTAssertNotNil(resultDate)
-        XCTAssertEqual(date, resultDate)
+        let resultDate = Date(dateString: "2014-01-02T00:monsterofthelakeI'mhere00:00.007450+00:00")
+        XCTAssertNil(resultDate)        
     }
+    */
+
 }
 
 class TimestampDateTests: XCTestCase {
