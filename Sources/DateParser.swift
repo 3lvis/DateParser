@@ -164,26 +164,33 @@ public extension Date {
             // Timezone
             let currentLength = currentString.characters.count
             if hasTimezone {
-                // Add the first part of the removed timezone to the end of the string.
-                // Original date: 2015-06-23T14:40:08.000+02:00
-                // Current date: 2015-06-23T14:40:08
-                // Will become:  2015-06-23T14:40:08+02
-                let timezoneHoursEndIndex = originalString.index(originalString.startIndex, offsetBy: "2015-06-23T14:40:08.000+02".characters.count)
-                let timezoneHoursIndex = originalString.index(originalString.startIndex, offsetBy: "2015-06-23T14:40:08.000".characters.count, limitedBy: timezoneHoursEndIndex)
-                let timezoneHours = originalString
-                // WARNING: Continu here
-                strncpy(UnsafeMutablePointer(mutating: currentString) + currentLength, UnsafeMutablePointer(mutating: originalString) + originalLength - 6, 3)
-
-                // Add the second part of the removed timezone to the end of the string.
+                // Convert time zone from hours and minutes and append it to the current string.
                 // Original date: 2015-06-23T14:40:08.000+02:00
                 // Current date:  2015-06-23T14:40:08+02
                 // Will become:   2015-06-23T14:40:08+0200
-                strncpy(UnsafeMutablePointer(mutating: currentString) + currentLength + 3, UnsafeMutablePointer(mutating: originalString) + originalLength - 2, 2)
+
+                var timeZoneHours: String {
+                    let endIndex = originalString.index(originalString.startIndex, offsetBy: "2015-06-23T14:40:08.000+02".characters.count)
+                    let partial = originalString.substring(to: endIndex)
+                    let startIndex = originalString.index(originalString.startIndex, offsetBy: "2015-06-23T14:40:08.000".characters.count)
+
+                    return partial.substring(from: startIndex)
+                }
+
+                var timeZoneMinutes: String {
+                    let endIndex = originalString.index(originalString.startIndex, offsetBy: "2015-06-23T14:40:08.000+02:00".characters.count)
+                    let partial = originalString.substring(to: endIndex)
+                    let startIndex = originalString.index(originalString.startIndex, offsetBy: "2015-06-23T14:40:08.000+02:".characters.count)
+
+                    return partial.substring(from: startIndex)
+                }
+                let timeZone = timeZoneHours + timeZoneMinutes
+                currentString = currentString.appending(timeZone)
             } else {
                 // Add GMT timezone to the end of the string
                 // Current date: 2015-09-10T00:00:00
                 // Will become:  2015-09-10T00:00:00+0000
-                strncpy(UnsafeMutablePointer(mutating: currentString) + currentLength, "+0000", 5)
+                currentString = currentString.appending("+0000")
             }
 
             // Parse the formatted date using `strptime`.
@@ -192,11 +199,7 @@ public extension Date {
             // %T: Equivalent to %H:%M:%S
             // %z: An RFC-822/ISO 8601 standard timezone specification
             var tmc: tm = tm(tm_sec: 0, tm_min: 0, tm_hour: 0, tm_mday: 0, tm_mon: 0, tm_year: 0, tm_wday: 0, tm_yday: 0, tm_isdst: 0, tm_gmtoff: 0, tm_zone: nil)
-            var shouldExit = false
             if strptime(UnsafeMutablePointer(mutating: currentString), "%FT%T%z", &tmc) == nil {
-                shouldExit = true
-            }
-            if shouldExit {
                 return nil
             }
 
@@ -230,9 +233,7 @@ public extension Date {
                 }
             }
 
-            self.init(timeIntervalSince1970: time)*/
-
-            self.init(timeIntervalSince1970: 0)
+            self.init(timeIntervalSince1970: time)
         }
     }
 
