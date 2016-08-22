@@ -49,13 +49,13 @@ public extension Date {
             // in GMT as a base, unless they have timezone, and Z is the GMT indicator.
             //
             // If +00:00 or any number after + is found, then it means that the date has a timezone.
-            // This means that `hasTimezone` will have to be set to YES, and since all timezones go to
+            // This means that `hasTimezone` will have to be set to true, and since all timezones go to
             // the end of the date, then they will be parsed at the end of the process and appended back
             // to the parsed date.
             //
             // If after the date theres `.` and a number `2014-03-30T09:13:00.XXX` the `XXX` is the milisecond
-            // then `hasMiliseconds` will be set to YES. The same goes for `XX` decisecond (hasCentiseconds set to YES).
-            // and microseconds `XXXXXX` (hasMicroseconds set yo YES).
+            // then `hasMiliseconds` will be set to true. The same goes for `XX` decisecond (hasCentiseconds set to true).
+            // and microseconds `XXXXXX` (hasMicroseconds set yo true).
             //
             // If your date format is not supported, then you'll get "Signal Sigabrt". Just ask your format to be included.
             // ----
@@ -143,7 +143,7 @@ public extension Date {
                     hasNormalizedTimeZone = true
                 }
             case 29:
-                // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to YES.
+                // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to true.
                 // Current date: 2015-06-23T12:40:08.000+02:00
                 // Will become:  2015-06-23T12:40:08
                 // Unit test I
@@ -157,7 +157,7 @@ public extension Date {
                     hasMiliseconds = true
                 }
             case 32:
-                // Copy all the date excluding the microseconds and the timezone also set `hasTimezone` to YES.
+                // Copy all the date excluding the microseconds and the timezone also set `hasTimezone` to true.
                 // Current date: 2015-08-23T09:29:30.007450+00:00
                 // Will become:  2015-08-23T09:29:30
                 // Unit test J
