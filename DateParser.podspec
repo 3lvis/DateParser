@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "DateParser"
   s.summary          = "Simple ISO 8601 and Unix timestamp Swift date parser"
-  s.version          = "0.1.0"
+  s.version          = "1.0.0"
   s.homepage         = "https://github.com/3lvis/DateParser"
   s.license          = 'MIT'
   s.author           = { "Elvis Nuñez" => "elvisnunez@me.com" }
