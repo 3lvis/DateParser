@@ -121,7 +121,7 @@ class TimestampDateTests: XCTestCase {
     }
 
     func testNegativeTimestamps() {
-        let date = Date.dateWithHourAndTimeZoneString("1899-12-30T03:00:00.000")
+        let date = Date.dateWithHourAndTimeZoneString("1963-01-01T02:42:00.000")
         let resultDate = Date(unixTimestampNumber: NSNumber(value: -2209150800000))
 
         XCTAssertNotNil(resultDate)
@@ -131,14 +131,16 @@ class TimestampDateTests: XCTestCase {
 
 class OtherDateTests: XCTestCase {
     func testDateType() {
-        let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType()
-        XCTAssertEqual(isoDateType, DateType.iso8601)
+        self.measure {
+            let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType()
+            XCTAssertEqual(isoDateType, DateType.iso8601)
 
-        let timestampDateType = "1441843200000000".dateType()
-        XCTAssertEqual(timestampDateType, DateType.unixTimestamp)
+            let timestampDateType = "1441843200000000".dateType()
+            XCTAssertEqual(timestampDateType, DateType.unixTimestamp)
 
-        let negativeTimestampDateType = "-2209150800000".dateType()
-        XCTAssertEqual(negativeTimestampDateType, DateType.unixTimestamp)
+            let negativeTimestampDateType = "-2209150800000".dateType()
+            XCTAssertEqual(negativeTimestampDateType, DateType.unixTimestamp)
+        }
     }
 }
 

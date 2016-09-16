@@ -275,7 +275,10 @@ public extension Date {
 
 public extension String {
     public func dateType() -> DateType {
-        if self.contains("-") {
+        let regex = try! NSRegularExpression(pattern: "-", options: [.caseInsensitive])
+        let items = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.characters.count))
+        let ranges = items.map { $0.range }
+        if ranges.count > 1 {
             return .iso8601
         } else {
             return .unixTimestamp
