@@ -1,1 +1,1 @@
-Check https://github.com/3lvis/DateParser/releases for more information.
+Check https://github.com/SyncDB/DateParser/releases for more information.

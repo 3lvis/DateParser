@@ -1,7 +1,7 @@
-![logo](https://raw.githubusercontent.com/3lvis/DateParser/master/Resources/logo-v1.png)
+![logo](https://raw.githubusercontent.com/SyncDB/DateParser/master/Resources/logo-v1.png)
 
 [![Version](https://img.shields.io/cocoapods/v/DateParser.svg?style=flat)](https://cocoapods.org/pods/DateParser)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/3lvis/DateParser)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SyncDB/DateParser)
 ![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20OS%20X%20%7C%20watchOS%20%7C%20tvOS%20-lightgrey.svg)
 [![License](https://img.shields.io/cocoapods/l/DateParser.svg?style=flat)](https://cocoapods.org/pods/DATAStack)
 
@@ -51,7 +51,7 @@ pod 'DateParser'
 it, simply add the following line to your Cartfile:
 
 ```ruby
-github "3lvis/DateParser"
+github "SyncDB/DateParser"
 ```
 
 ## License
