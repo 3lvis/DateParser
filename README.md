@@ -11,10 +11,10 @@ Simple ISO 8601 and Unix timestamp Swift date parser.
 
 ```swift
 // ISO 8601
-let isoDate = NSDate(fromDateString:"2015-06-23T14:40:08.000+02:00")
+let isoDate = Date(dateString:"2015-06-23T14:40:08.000+02:00")
 
 // Unix Timestamp
-let timestampDate = NSDate(fromDateString:"1441843200")
+let timestampDate = Date(unixTimestampString:"1441843200")
 
 // Returns DateType.ISO8601  
 let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType()
