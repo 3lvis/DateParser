@@ -19,7 +19,7 @@
   <a href="https://cocoapods.org/pods/DateParser" target="blank">
     <img src="https://img.shields.io/cocoapods/l/DateParser.svg?style=flat" />
   </a>
-  <a href="https://gitter.im/SyncDB/project-dateparser?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
+  <a href="https://gitter.im/SyncDB/DateParser">
     <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
   </a>
   <br>
