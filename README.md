@@ -1,9 +1,30 @@
 ![logo](https://raw.githubusercontent.com/SyncDB/DateParser/master/Resources/logo-v1.png)
 
-[![Version](https://img.shields.io/cocoapods/v/DateParser.svg?style=flat)](https://cocoapods.org/pods/DateParser)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/SyncDB/DateParser)
-![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20OS%20X%20%7C%20watchOS%20%7C%20tvOS%20-lightgrey.svg)
-[![License](https://img.shields.io/cocoapods/l/DateParser.svg?style=flat)](https://cocoapods.org/pods/DATAStack)
+<div align = "center">
+  <a href="https://cocoapods.org/pods/DateParser">
+    <img src="https://img.shields.io/cocoapods/v/DateParser.svg?style=flat" />
+  </a>
+  <a href="https://github.com/SyncDB/DateParser">
+    <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
+  </a>
+  <a href="https://github.com/SyncDB/DateParser#installation">
+    <img src="https://img.shields.io/badge/compatible-swift%203.0%20-orange.svg" />
+  </a>
+</div>
+
+<div align = "center">
+  <a href="https://cocoapods.org/pods/DateParser" target="blank">
+    <img src="https://img.shields.io/cocoapods/p/DateParser.svg?style=flat" />
+  </a>
+  <a href="https://cocoapods.org/pods/DateParser" target="blank">
+    <img src="https://img.shields.io/cocoapods/l/DateParser.svg?style=flat" />
+  </a>
+  <a href="https://gitter.im/SyncDB/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
+    <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
+  </a>
+  <br>
+  <br>
+</div>
 
 Simple ISO 8601 and Unix timestamp Swift date parser.
 
