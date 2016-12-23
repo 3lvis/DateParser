@@ -38,10 +38,10 @@ let isoDate = try Date(dateString:"2015-06-23T14:40:08.000+02:00")
 let timestampDate = try Date(unixTimestampString:"1441843200")
 
 // Returns DateType.ISO8601  
-let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType()
+let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType
 
 // Returns DateType.UnixTimestamp
-let timestampDateType = "1441843200000000".dateType()
+let timestampDateType = "1441843200000000".dateType
 ```
 
 ## Supported Formats
