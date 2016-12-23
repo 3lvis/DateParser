@@ -9,22 +9,25 @@ public enum DateType {
     case iso8601, unixTimestamp
 }
 
+enum DateParsingError : Error {
+    case notFound
+    case notImplemented
+}
+
 public extension Date {
-    public init?(dateString: String) {
+    public init(dateString: String) throws {
         let dateType = dateString.dateType()
         switch dateType {
         case .iso8601:
-            self.init(iso8601String: dateString)
-            break
+            try self.init(iso8601String: dateString)
         case .unixTimestamp:
-            self.init(unixTimestampString: dateString)
-            break
+            try self.init(unixTimestampString: dateString)
         }
     }
 
-    public init?(iso8601String: String) {
+    public init(iso8601String: String) throws {
         if (iso8601String as NSString) == NSNull() {
-            return nil
+            throw DateParsingError.notFound
         } else {
             var dateString = iso8601String
             if dateString.characters.count == DateParser.noTimestampFormat.characters.count {
@@ -32,7 +35,7 @@ public extension Date {
             }
 
             if iso8601String.isEmpty {
-                return nil
+                throw DateParsingError.notFound
             }
 
             let originalLength = dateString.characters.count
@@ -171,8 +174,8 @@ public extension Date {
                     hasMicroseconds = true
                 }
             default:
-                fatalError("Your date format \(originalString) is not supported, please file a bug report asking it to be added.")
-                break
+                throw DateParsingError.notImplemented
+                // fatalError("Your date format \(originalString) is not supported, please file a bug report asking it to be added.")
             }
 
             // Timezone
@@ -214,7 +217,7 @@ public extension Date {
             // %z: An RFC-822/ISO 8601 standard timezone specification
             var tmc: tm = tm(tm_sec: 0, tm_min: 0, tm_hour: 0, tm_mday: 0, tm_mon: 0, tm_year: 0, tm_wday: 0, tm_yday: 0, tm_isdst: 0, tm_gmtoff: 0, tm_zone: nil)
             if strptime(UnsafeMutablePointer(mutating: currentString), "%FT%T%z", &tmc) == nil {
-                return nil
+                throw DateParsingError.notFound
             }
 
             var time = Double(mktime(&tmc))
@@ -251,11 +254,11 @@ public extension Date {
         }
     }
 
-    public init(unixTimestampNumber: NSNumber) {
-        self.init(unixTimestampString: unixTimestampNumber.stringValue)
+    public init(unixTimestampNumber: NSNumber) throws {
+        try self.init(unixTimestampString: unixTimestampNumber.stringValue)
     }
 
-    public init(unixTimestampString: String) {
+    public init(unixTimestampString: String) throws {
         var parsedString = unixTimestampString
         let validUnixTimestamp = "1441843200"
         let validLength = validUnixTimestamp.characters.count
@@ -268,7 +271,8 @@ public extension Date {
         if let unixTimestampNumber = numberFormatter.number(from: parsedString) {
             self.init(timeIntervalSince1970: unixTimestampNumber.doubleValue)
         } else {
-            fatalError("Invalid unix timestamp \(unixTimestampString), please file an issue to get support for your date type")
+            throw DateParsingError.notImplemented
+            // fatalError("Invalid unix timestamp \(unixTimestampString), please file an issue to get support for your date type")
         }
     }
 }
