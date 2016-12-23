@@ -119,10 +119,10 @@ class TimestampDateTests: XCTestCase {
 
 class OtherDateTests: XCTestCase {
     func testDateType() {
-        let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType()
+        let isoDateType = "2014-01-02T00:00:00.007450+00:00".dateType
         XCTAssertEqual(isoDateType, DateType.iso8601)
 
-        let timestampDateType = "1441843200000000".dateType()
+        let timestampDateType = "1441843200000000".dateType
         XCTAssertEqual(timestampDateType, DateType.unixTimestamp)
     }
 }

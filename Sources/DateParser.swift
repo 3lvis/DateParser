@@ -16,7 +16,7 @@ public enum DateParsingError : Error {
 
 public extension Date {
     public init(dateString: String) throws {
-        let dateType = dateString.dateType()
+        let dateType = dateString.dateType
         switch dateType {
         case .iso8601:
             try self.init(iso8601String: dateString)
@@ -276,7 +276,7 @@ public extension Date {
 }
 
 public extension String {
-    public func dateType() -> DateType {
+    public var dateType: DateType {
         if self.contains("-") {
             return .iso8601
         } else {
