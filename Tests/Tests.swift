@@ -77,10 +77,9 @@ class DateTests: XCTestCase {
         XCTAssertEqual(date, resultDate)
     }
 
-    // No longer testable since now it will use fatalError instead of returning nil
     func testDateK() {
         let resultDate = try? Date(dateString: "2014-01-02T00:monsterofthelakeI'mhere00:00.007450+00:00")
-        XCTAssertNil(resultDate)        
+        XCTAssertNil(resultDate)
     }
 }
 

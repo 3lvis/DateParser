@@ -9,7 +9,7 @@ public enum DateType {
     case iso8601, unixTimestamp
 }
 
-enum DateParsingError : Error {
+public enum DateParsingError : Error {
     case notFound
     case notImplemented
 }
@@ -175,7 +175,6 @@ public extension Date {
                 }
             default:
                 throw DateParsingError.notImplemented
-                // fatalError("Your date format \(originalString) is not supported, please file a bug report asking it to be added.")
             }
 
             // Timezone
@@ -272,7 +271,6 @@ public extension Date {
             self.init(timeIntervalSince1970: unixTimestampNumber.doubleValue)
         } else {
             throw DateParsingError.notImplemented
-            // fatalError("Invalid unix timestamp \(unixTimestampString), please file an issue to get support for your date type")
         }
     }
 }
@@ -283,6 +281,17 @@ public extension String {
             return .iso8601
         } else {
             return .unixTimestamp
+        }
+    }
+}
+
+extension DateParsingError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .notFound:
+            return NSLocalizedString("Doesn't seem to be a date here.", comment: "")
+        case .notImplemented:
+            return NSLocalizedString("Your date format is not supported, please file a bug report asking to add it.", comment: "")
         }
     }
 }
