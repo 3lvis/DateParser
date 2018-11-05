@@ -216,7 +216,7 @@ public extension Date {
             // %T: Equivalent to %H:%M:%S
             // %z: An RFC-822/ISO 8601 standard timezone specification
             var tmc: tm = tm(tm_sec: 0, tm_min: 0, tm_hour: 0, tm_mday: 0, tm_mon: 0, tm_year: 0, tm_wday: 0, tm_yday: 0, tm_isdst: 0, tm_gmtoff: 0, tm_zone: nil)
-            if strptime(UnsafeMutablePointer(mutating: currentString), "%FT%T%z", &tmc) == nil {
+            if strptime(currentString.cString(using: .utf8), "%FT%T%z", &tmc) == nil {
                 throw DateParsingError.notFound
             }
 
