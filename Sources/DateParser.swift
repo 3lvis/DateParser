@@ -30,7 +30,7 @@ public extension Date {
             throw DateParsingError.notFound
         } else {
             var dateString = iso8601String
-            if dateString.characters.count == DateParser.noTimestampFormat.characters.count {
+            if dateString.count == DateParser.noTimestampFormat.count {
                 dateString.append(DateParser.timestamp)
             }
 
@@ -38,7 +38,7 @@ public extension Date {
                 throw DateParsingError.notFound
             }
 
-            let originalLength = dateString.characters.count
+            let originalLength = dateString.count
             let originalString = dateString
             var currentString = ""
             var hasFullTimeZone = false
@@ -77,7 +77,7 @@ public extension Date {
                 // Unit test B
                 let timeZoneIndicatorIndex = originalString.index(originalString.endIndex, offsetBy: -1)
                 if originalString[timeZoneIndicatorIndex] == "Z" {
-                    currentString = originalString.substring(to: timeZoneIndicatorIndex)
+                    currentString = String(originalString[..<timeZoneIndicatorIndex])
                 }
             case 22:
                 // Copy all the date excluding the miliseconds.
@@ -85,11 +85,12 @@ public extension Date {
                 // Will become:  2016-01-09T00:00:00
                 // Unit test C
                 let evaluatedDate = "2016-01-09T00:00:00"
-                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.count)
                 if originalString[timeZoneColonIndex] == "." {
                     let targetDate = "2014-01-01T00:00:00"
-                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
-                    currentString = originalString.substring(to: baseDateIndex)
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.count)
+                    currentString = String(originalString[..<baseDateIndex])
+
                     hasCentiseconds = true
                 }
             case 24:
@@ -100,8 +101,8 @@ public extension Date {
                 let gmtIndicatorIndex = originalString.index(originalString.endIndex, offsetBy: -1)
                 if originalString[gmtIndicatorIndex] == "Z" {
                     let targetDate = "2014-01-01T00:00:00"
-                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
-                    currentString = originalString.substring(to: baseDateIndex)
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.count)
+                    currentString = String(originalString[..<baseDateIndex])
                     hasMiliseconds = true
                 }
             case 25:
@@ -110,11 +111,11 @@ public extension Date {
                 // Will become:  2014-01-01T00:00:00
                 // Unit test E and F
                 let evaluatedDate = "2014-01-01T00:00:00+00"
-                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.count)
                 if originalString[timeZoneColonIndex] == ":" {
                     let targetDate = "2014-01-01T00:00:00"
-                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
-                    currentString = originalString.substring(to: baseDateIndex)
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.count)
+                    currentString = String(originalString[..<baseDateIndex])
                     hasFullTimeZone = true
                 }
             case 27:
@@ -123,12 +124,12 @@ public extension Date {
                 // Will become:  2015-09-10T00:00:00
                 // Unit test G
                 let evaluatedDate = "2015-09-10T00:00:00"
-                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.count)
                 let gmtIndicatorIndex = originalString.index(originalString.endIndex, offsetBy: -1)
                 if originalString[timeZoneColonIndex] == "." && originalString[gmtIndicatorIndex] == "Z" {
                     let targetDate = "2014-01-01T00:00:00"
-                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
-                    currentString = originalString.substring(to: baseDateIndex)
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.count)
+                    currentString = String(originalString[..<baseDateIndex])
                     hasMicroseconds = true
                 }
             case 28:
@@ -137,11 +138,11 @@ public extension Date {
                 // Will become:  2015-09-10T13:47:21
                 // Unit test H
                 let evaluatedDate = "2015-09-10T13:47:21.116"
-                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.count)
                 if originalString[timeZoneColonIndex] == "+" {
                     let targetDate = "2014-01-01T00:00:00"
-                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
-                    currentString = originalString.substring(to: baseDateIndex)
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.count)
+                    currentString = String(originalString[..<baseDateIndex])
                     hasMiliseconds = true
                     hasNormalizedTimeZone = true
                 }
@@ -151,11 +152,11 @@ public extension Date {
                 // Will become:  2015-06-23T12:40:08
                 // Unit test I
                 let evaluatedDate = "2015-06-23T12:40:08.000+02"
-                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.count)
                 if originalString[timeZoneColonIndex] == ":" {
                     let targetDate = "2015-06-23T12:40:08"
-                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
-                    currentString = originalString.substring(to: baseDateIndex)
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.count)
+                    currentString = String(originalString[..<baseDateIndex])
                     hasFullTimeZone = true
                     hasMiliseconds = true
                 }
@@ -165,11 +166,11 @@ public extension Date {
                 // Will become:  2015-08-23T09:29:30
                 // Unit test J
                 let evaluatedDate = "2015-08-23T09:29:30.007450+00"
-                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.characters.count)
+                let timeZoneColonIndex = originalString.index(originalString.startIndex, offsetBy: evaluatedDate.count)
                 if originalString[timeZoneColonIndex] == ":" {
                     let targetDate = "2015-06-23T12:40:08"
-                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.characters.count)
-                    currentString = originalString.substring(to: baseDateIndex)
+                    let baseDateIndex = originalString.index(originalString.startIndex, offsetBy: targetDate.count)
+                    currentString = String(originalString[..<baseDateIndex])
                     hasFullTimeZone = true
                     hasMicroseconds = true
                 }
@@ -178,15 +179,15 @@ public extension Date {
             }
 
             // Timezone
-            let currentLength = currentString.characters.count
+            let currentLength = currentString.count
             if hasFullTimeZone {
                 // Convert time zone from hours and minutes and append it to the current string.
                 // Original date: 2015-06-23T14:40:08.000+02:00
                 // Current date:  2015-06-23T14:40:08
                 // Will become:   2015-06-23T14:40:08+0200
                 var timeZone: String {
-                    let endIndex = originalString.index(originalString.endIndex, offsetBy: -"+02:00".characters.count)
-                    let fullTimeZone = originalString.substring(from: endIndex)
+                    let endIndex = originalString.index(originalString.endIndex, offsetBy: -"+02:00".count)
+                    let fullTimeZone = String(originalString[endIndex...])
 
                     return fullTimeZone.replacingOccurrences(of: ":", with: "")
                 }
@@ -197,9 +198,9 @@ public extension Date {
                 // Current date:  2015-06-23T14:40:08
                 // Will become:   2015-06-23T14:40:08+0200
                 var timeZone: String {
-                    let endIndex = originalString.index(originalString.endIndex, offsetBy: -"+0200".characters.count)
+                    let endIndex = originalString.index(originalString.endIndex, offsetBy: -"+0200".count)
 
-                    return originalString.substring(from: endIndex)
+                    return String(originalString[endIndex...])
                 }
                 currentString = currentString.appending(timeZone)
             } else {
@@ -215,17 +216,17 @@ public extension Date {
             // %T: Equivalent to %H:%M:%S
             // %z: An RFC-822/ISO 8601 standard timezone specification
             var tmc: tm = tm(tm_sec: 0, tm_min: 0, tm_hour: 0, tm_mday: 0, tm_mon: 0, tm_year: 0, tm_wday: 0, tm_yday: 0, tm_isdst: 0, tm_gmtoff: 0, tm_zone: nil)
-            if strptime(UnsafeMutablePointer(mutating: currentString), "%FT%T%z", &tmc) == nil {
+            if strptime(currentString.cString(using: .utf8), "%FT%T%z", &tmc) == nil {
                 throw DateParsingError.notFound
             }
 
             var time = Double(mktime(&tmc))
 
             if hasCentiseconds || hasMiliseconds || hasMicroseconds {
-                let trimmedDate = dateString.substring(from: "2015-09-10T00:00:00.".endIndex)
+                let trimmedDate = String(dateString["2015-09-10T00:00:00.".endIndex...])
 
                 if hasCentiseconds {
-                    let centisecondsString = trimmedDate.substring(to: "00".endIndex)
+                    let centisecondsString = String(trimmedDate[..<"00".endIndex])
                     if let doubleString = Double(centisecondsString) {
                         let centiseconds = doubleString / 100.0
                         time += centiseconds
@@ -233,7 +234,7 @@ public extension Date {
                 }
 
                 if hasMiliseconds {
-                    let milisecondsString = trimmedDate.substring(to: "000".endIndex)
+                    let milisecondsString = String(trimmedDate[..<"000".endIndex])
                     if let doubleString = Double(milisecondsString) {
                         let miliseconds = doubleString / 1000.0
                         time += miliseconds
@@ -241,7 +242,7 @@ public extension Date {
                 }
 
                 if hasMicroseconds {
-                    let microsecondsString = trimmedDate.substring(to: "000000".endIndex)
+                    let microsecondsString = String(trimmedDate[..<"000000".endIndex])
                     if let doubleString = Double(microsecondsString) {
                         let microseconds = doubleString / 1000000.0
                         time += microseconds
@@ -260,9 +261,9 @@ public extension Date {
     public init(unixTimestampString: String) throws {
         var parsedString = unixTimestampString
         let validUnixTimestamp = "1441843200"
-        let validLength = validUnixTimestamp.characters.count
-        if unixTimestampString.characters.count > validLength {
-            parsedString = unixTimestampString.substring(to: validUnixTimestamp.endIndex)
+        let validLength = validUnixTimestamp.count
+        if unixTimestampString.count > validLength {
+            parsedString = String(unixTimestampString[..<validUnixTimestamp.endIndex])
         }
 
         let numberFormatter = NumberFormatter()
